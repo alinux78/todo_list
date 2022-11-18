@@ -28,7 +28,7 @@ let items: Array<ToDoItem> = [
     createdAt: new Date()
   },
   {
-    done: false,
+    done: true,
     summary: "Buy Christmas presents",
     createdAt: new Date()
   }
