@@ -9,12 +9,22 @@ import { ToDoItem } from '../services/to-do-items.service';
 export class TodoItemComponent implements OnInit {
   @Input() item: ToDoItem;
 
+  isEditMode = false;
+
   constructor() { }
 
   toggleDone() {
     this.item.done = !this.item.done;
     //TODO - use service to save item
 
+  }
+
+  enableEdit() {
+    this.isEditMode = true
+  }
+
+  disableEdit() {
+    this.isEditMode = false
   }
 
   ngOnInit(): void {
