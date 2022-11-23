@@ -13,7 +13,7 @@ export class ListItemsComponent implements OnInit {
   constructor(private service:ToDoItemsService) { }
 
   ngOnInit(): void {
-    this.items = this.service.get();
+    this.service.get().subscribe( items => this.items = items);
   }
 
 }

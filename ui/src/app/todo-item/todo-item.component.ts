@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ToDoItem } from '../services/to-do-items.service';
+import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
 
 @Component({
   selector: 'todo-item',
@@ -11,12 +11,11 @@ export class TodoItemComponent implements OnInit {
 
   isEditMode = false;
 
-  constructor() { }
+  constructor(private itemsService:ToDoItemsService) { }
 
   toggleDone() {
     this.item.done = !this.item.done;
-    //TODO - use service to save item
-
+    this.saveItem();
   }
 
   enableEdit() {
@@ -25,6 +24,10 @@ export class TodoItemComponent implements OnInit {
 
   disableEdit() {
     this.isEditMode = false
+  }
+
+  saveItem() {
+    this.itemsService.save(this.item);
   }
 
   ngOnInit(): void {

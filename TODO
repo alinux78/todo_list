@@ -1,1 +1,2 @@
-handle toggle done and in place summary edit
+fix edit bug - save only when saveItem is called
+implement remove
