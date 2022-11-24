@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListItemsComponent } from './list-items/list-items.component';
 import { ToDoItemsService } from './services/to-do-items.service';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
     TodoItemComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     ToDoItemsService

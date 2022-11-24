@@ -10,6 +10,7 @@ export class TodoItemComponent implements OnInit {
   @Input() item: ToDoItem;
 
   isEditMode = false;
+  summary: string
 
   constructor(private itemsService:ToDoItemsService) { }
 
@@ -19,18 +20,21 @@ export class TodoItemComponent implements OnInit {
   }
 
   enableEdit() {
-    this.isEditMode = true
+    this.summary = this.item.summary;
+    this.isEditMode = true;
   }
 
   disableEdit() {
-    this.isEditMode = false
+    this.isEditMode = false;
   }
 
   saveItem() {
+    this.item.summary = this.summary;
     this.itemsService.save(this.item);
   }
 
   ngOnInit(): void {
+    this.summary = this.item.summary;
   }
 
 }
