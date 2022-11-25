@@ -33,6 +33,10 @@ export class TodoItemComponent implements OnInit {
     this.itemsService.save(this.item);
   }
 
+  deleteItem() {
+    this.itemsService.delete(this.item);
+  }
+
   ngOnInit(): void {
     this.summary = this.item.summary;
   }

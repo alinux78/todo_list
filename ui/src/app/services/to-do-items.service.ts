@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export interface ToDoItem {
@@ -56,10 +57,18 @@ export class ToDoItemsService {
 
   save(item: ToDoItem) {
     if (!item.id) {
+      item.id = uuidv4();
       items.push(item);
     } else {
       let idx = items.findIndex(i => i.id == item.id);
       items[idx] = item;
+    }
+  }
+
+  delete(item: ToDoItem) {
+    let idx = items.findIndex(i => i.id == item.id);
+    if (idx >=0) {
+      items.splice(idx, 1);
     }
   }
 }

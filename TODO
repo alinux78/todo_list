@@ -1,2 +1,4 @@
-fix edit bug - save only when saveItem is called
-implement remove
+implement set due date
+edit due date
+
+REST service get
