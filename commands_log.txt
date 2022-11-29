@@ -1,0 +1,6 @@
+Angular
+
+1) add date picker
+	ng add @angular/material
+        ng add ngx-bootstrap --component datepicker
+
