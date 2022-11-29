@@ -8,6 +8,18 @@ import { ListItemsComponent } from './list-items/list-items.component';
 import { ToDoItemsService } from './services/to-do-items.service';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+const materialModules = [
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatFormFieldModule,
+  MatInputModule
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +31,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ...materialModules
   ],
   providers: [
     ToDoItemsService

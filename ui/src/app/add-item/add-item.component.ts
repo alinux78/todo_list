@@ -10,6 +10,8 @@ export class AddItemComponent implements OnInit {
 
   summary:string;
 
+  dueDate = null;
+
   constructor(private service:ToDoItemsService) { }
 
   ngOnInit(): void {
@@ -24,11 +26,13 @@ export class AddItemComponent implements OnInit {
       id: null,
       done: false,
       summary: this.summary,
-      createdAt: new Date()
+      createdAt: new Date(),
+      dueDate: this.dueDate
     }
 
     this.service.save(item);
     this.summary = null;
+    this.dueDate = null;
   }
 
 }
