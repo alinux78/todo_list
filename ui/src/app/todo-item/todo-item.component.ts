@@ -11,6 +11,7 @@ export class TodoItemComponent implements OnInit {
 
   isEditMode = false;
   summary: string
+  dueDate: Date;
 
   constructor(private itemsService:ToDoItemsService) { }
 
@@ -22,6 +23,7 @@ export class TodoItemComponent implements OnInit {
   enableEdit() {
     this.summary = this.item.summary;
     this.isEditMode = true;
+    this.dueDate = this.item.dueDate;
   }
 
   disableEdit() {
@@ -31,6 +33,7 @@ export class TodoItemComponent implements OnInit {
   saveItem() {
     this.item.summary = this.summary;
     this.itemsService.save(this.item);
+    this.item.dueDate = this.dueDate;
   }
 
   deleteItem() {

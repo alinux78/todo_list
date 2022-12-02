@@ -1,4 +1,5 @@
-implement set due date
+cancel edit on focus lost/esc key
+clear due date
 edit due date
 
 REST service get

@@ -8,11 +8,13 @@
               <label class="text-secondary my-2 p-0 px-1 view-opt-label due-date-label d-none">Due date not set</label>
               <!-- <i class="fa fa-calendar my-2 px-1 text-primary btn due-date-button" data-toggle="tooltip" data-placement="bottom" title="Set a Due date"></i> -->
 
-              <input [matDatepicker]="myDatepicker" readonly [(ngModel)]="dueDate" placeholder="Due date">
-              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker></mat-datepicker>
-
-              <i class="fa fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-none" data-toggle="tooltip" data-placement="bottom" title="Clear Due date"></i>
+              <div class="col-auto d-flex flex-row-reverse align-items-right rounded bg-white">
+                <!-- TODO fix size styling -->
+                <input style="width:6em;" class="col-auto  px-0 mx-0 mr-2 form-control align-items-center border-0 bg-transparent rounded" [matDatepicker]="myDatepicker" readonly [(ngModel)]="dueDate" placeholder="Due date">
+                <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #myDatepicker></mat-datepicker>
+                <i class="fa fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-none" data-toggle="tooltip" data-placement="bottom" title="Clear Due date"></i>
+              </div>
           </div>
           <div class="col-auto px-0 mx-0 mr-2">
               <button type="submit" (click)="addItem()" (keyup.enter)="addItem()" [disabled]="summary == null" class="btn btn-primary">Add</button>
