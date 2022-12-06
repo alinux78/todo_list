@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
 
@@ -28,6 +29,12 @@ export class TodoItemComponent implements OnInit {
 
   disableEdit() {
     this.isEditMode = false;
+    this.summary = null;
+    this.dueDate = null;
+  }
+
+  clearDueDate() {
+    this.dueDate = null;
   }
 
   saveItem() {

@@ -31,6 +31,10 @@ export class AddItemComponent implements OnInit {
     }
 
     this.service.save(item);
+    this.clear();
+  }
+
+  clear() {
     this.summary = null;
     this.dueDate = null;
   }
