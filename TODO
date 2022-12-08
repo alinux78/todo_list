@@ -1,5 +1,9 @@
-focus on double click
-cancel edit on focus lost
-confirm delete
+FEATURES:
+	confirm delete
+	REST service add/edit/delete
 
-REST service get
+BUGS:
+	click done moves summary text
+	focus on double click
+	cancel edit on focus lost
+
