@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,50 +10,24 @@ export interface ToDoItem {
   done: boolean;
 	summary: string;
 	details?: number;
-	dueDate?: Date;
-  createdAt: Date;
+	dueDate?: number;
+  createdAt: number;
 }
 
-let items: Array<ToDoItem> = [
-  {
-    id: "1",
-    done: true,
-    summary: "Buy groceries for next week",
-    createdAt: new Date()
-  },
-  {
-    id: "2",
-    done: false,
-    summary: "Renew car insurance",
-    dueDate: new Date((new Date().getTime() + 7 * 24 * 60 * 60 * 1000)),
-    createdAt: new Date()
-  },
-  {
-    id: "3",
-    done: false,
-    summary: "Sign up for online course",
-    createdAt: new Date()
-  },
-  {
-    id: "4",
-    done: true,
-    summary: "Buy Christmas presents",
-    createdAt: new Date()
-  }
+let items: Array<ToDoItem> = []
 
-
-]
-
+const  API_URL = "http://localhost:8081"
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToDoItemsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   get() {
-    return from([items]);
+    let url = `${API_URL}/todos`
+    return this.http.get<Array<ToDoItem>>(url);
   }
 
   save(item: ToDoItem) {

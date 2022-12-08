@@ -13,6 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
 
 const materialModules = [
   MatDatepickerModule,
@@ -33,6 +34,7 @@ const materialModules = [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ...materialModules
   ],
   providers: [

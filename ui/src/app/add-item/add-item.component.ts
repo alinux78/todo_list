@@ -26,7 +26,7 @@ export class AddItemComponent implements OnInit {
       id: null,
       done: false,
       summary: this.summary,
-      createdAt: new Date(),
+      createdAt: new Date().getTime(),
       dueDate: this.dueDate
     }
 
