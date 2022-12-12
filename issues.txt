@@ -1,0 +1,16 @@
+
+* Could not access docker exposed port
+
+	vi /etc/systemd/network/docker.conf
+	add:
+##########################################	
+	[Match]
+	Name=docker0
+
+	[Link]
+	Unmanaged=yes
+##########################################
+
+https://vadosware.io/post/a-reliable-fix-to-docker-not-keeping-its-ipv4-address-on-arch/
+
+

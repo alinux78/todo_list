@@ -6,4 +6,6 @@ BUGS:
 	click done moves summary text
 	focus on double click
 	cancel edit on focus lost
+	run nginx as nginx user
+	angular docker build prod
 
