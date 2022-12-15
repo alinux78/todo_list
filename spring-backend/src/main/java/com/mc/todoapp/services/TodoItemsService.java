@@ -20,7 +20,8 @@ public class TodoItemsService {
             new TodoItem("1", true, "Write letter to Santa",  new GregorianCalendar(2012, Calendar.NOVEMBER, 28).getTimeInMillis(), System.currentTimeMillis()),
             new TodoItem("2", false, "Buy presents (just in case)",  new GregorianCalendar(2022, Calendar.DECEMBER, 23).getTimeInMillis(), System.currentTimeMillis()),
             new TodoItem("3", false, "Renew car insurance",  new GregorianCalendar(2023, Calendar.JANUARY, 15).getTimeInMillis(), System.currentTimeMillis()),
-            new TodoItem("4", false, "Read Harry Potter",  null, System.currentTimeMillis())
+            new TodoItem("4", false, "Read Harry Potter",  null, System.currentTimeMillis()),
+            new TodoItem("5", false, "Order coffee",  null, System.currentTimeMillis())
         );
         // TODO fetch items from repo
         //return todoItemsRepository.findAll();

@@ -16,7 +16,8 @@ export interface ToDoItem {
 
 let items: Array<ToDoItem> = []
 
-const  API_URL = "http://localhost:8081"
+//TODO externalize this in env var
+const  API_URL = "http://localhost:8082"
 
 @Injectable({
   providedIn: 'root'
