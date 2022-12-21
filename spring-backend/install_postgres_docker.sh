@@ -6,11 +6,12 @@ docker pull postgres:15.1
 docker stop postgresql
 docker rm postgresql
 
+mkdir -p $HOME/.todo/pg_data
 docker run --name postgresql \
      -e POSTGRES_USER=todo \
      -e POSTGRES_PASSWORD=todo \
      -p 5432:5432 \
-     -v pg_data:/var/lib/postgresql/data \
+     -v $HOME/.todo/pg_data:/var/lib/postgresql/data \
      -d \
      postgres
 

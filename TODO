@@ -1,6 +1,7 @@
 FEATURES:
 	confirm delete
 	REST service add/edit/delete
+	startAll script
 
 BUGS:
 	click done moves summary text
