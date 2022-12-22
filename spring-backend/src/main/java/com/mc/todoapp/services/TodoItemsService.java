@@ -16,4 +16,12 @@ public class TodoItemsService {
     public List<TodoItem> getAll() {
         return todoItemsRepository.findAll();
     }
+
+    public TodoItem save(TodoItem item) {
+       return todoItemsRepository.save(item);   
+    }
+
+    public void delete(String itemId) {
+        todoItemsRepository.deleteById(itemId);   
+     }
 }

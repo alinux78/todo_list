@@ -1,8 +1,6 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 
 
 export interface ToDoItem {
@@ -17,7 +15,7 @@ export interface ToDoItem {
 let items: Array<ToDoItem> = []
 
 //TODO externalize this in env var
-const  API_URL = "http://localhost:8082"
+const  API_URL = "http://localhost:8082/todos"
 
 @Injectable({
   providedIn: 'root'
@@ -27,24 +25,31 @@ export class ToDoItemsService {
   constructor(private http: HttpClient) { }
 
   get() {
-    let url = `${API_URL}/todos`
-    return this.http.get<Array<ToDoItem>>(url);
+    return this.http.get<Array<ToDoItem>>(API_URL);
   }
 
   save(item: ToDoItem) {
+    console.log("saving item")
     if (!item.id) {
-      item.id = uuidv4();
-      items.push(item);
+      this.http.post(API_URL, item).subscribe( data => {
+        //TODO imprive reload
+        window.location.reload();
+      });
     } else {
-      let idx = items.findIndex(i => i.id == item.id);
-      items[idx] = item;
+      this.http.put(API_URL, item).subscribe(data => {
+        //TODO imprive reload
+        window.location.reload();
+      });
     }
   }
 
   delete(item: ToDoItem) {
-    let idx = items.findIndex(i => i.id == item.id);
-    if (idx >=0) {
-      items.splice(idx, 1);
-    }
+    console.log("deleting item");
+    const url = `${API_URL}/${item.id}`;
+    console.log(`url = ${url}`);
+    this.http.delete(url).subscribe(data => {
+      //TODO imprive reload
+      window.location.reload();
+    });
   }
 }

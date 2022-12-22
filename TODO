@@ -1,7 +1,9 @@
 FEATURES:
+	validate REST input (spring ?)
 	confirm delete
 	REST service add/edit/delete
 	startAll script
+	stopAll script
 
 BUGS:
 	click done moves summary text
