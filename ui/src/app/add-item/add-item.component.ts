@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
       done: false,
       summary: this.summary,
       createdAt: new Date().getTime(),
-      dueDate: this.dueDate
+      dueDate: this.dueDate?.getTime()
     }
 
     this.service.save(item);

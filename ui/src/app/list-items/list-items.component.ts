@@ -10,9 +10,17 @@ export class ListItemsComponent implements OnInit {
 
   items: Array<ToDoItem>
 
-  constructor(private service:ToDoItemsService) { }
+  constructor(private service:ToDoItemsService) {
+    this.service.itemsChanged.subscribe(value => {
+      this.refreshItems();
+    });
+   }
 
   ngOnInit(): void {
+    this.refreshItems();
+  }
+
+  private refreshItems(): void {
     this.service.get().subscribe( items => this.items = items);
   }
 

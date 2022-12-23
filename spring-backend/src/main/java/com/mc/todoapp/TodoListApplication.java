@@ -27,7 +27,7 @@ public class TodoListApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("*").allowedOrigins("http://localhost:5050");
+				registry.addMapping("/*").allowedOrigins("http://localhost:5050");
 			}
 		};
 	}
@@ -35,12 +35,14 @@ public class TodoListApplication {
 	// TODO remove init data
 	@Bean
 	ApplicationRunner init(TodoItemsRepository repository) {
+		long now = System.currentTimeMillis();
+		int i = 0;
 		var items =List.of(
-            new TodoItem(null, true, "Write letter to Santa",  new GregorianCalendar(2012, Calendar.NOVEMBER, 28).getTimeInMillis(), System.currentTimeMillis()),
-            new TodoItem(null, false, "Buy presents (just in case)",  new GregorianCalendar(2022, Calendar.DECEMBER, 23).getTimeInMillis(), System.currentTimeMillis()),
-            new TodoItem(null, false, "Renew car insurance",  new GregorianCalendar(2023, Calendar.JANUARY, 15).getTimeInMillis(), System.currentTimeMillis()),
-            new TodoItem(null, false, "Read Harry Potter",  null, System.currentTimeMillis()),
-            new TodoItem(null, false, "Order coffee",  null, System.currentTimeMillis())
+            new TodoItem(null, true, "Write letter to Santa",  new GregorianCalendar(2012, Calendar.NOVEMBER, 28).getTimeInMillis(), now + (i++) * 1000),
+            new TodoItem(null, false, "Buy presents (just in case)",  new GregorianCalendar(2022, Calendar.DECEMBER, 23).getTimeInMillis(), now + (i++) * 1000),
+            new TodoItem(null, false, "Renew car insurance",  new GregorianCalendar(2023, Calendar.JANUARY, 15).getTimeInMillis(), now + (i++) * 1000),
+            new TodoItem(null, false, "Read Harry Potter",  null, now + (i++) * 1000),
+            new TodoItem(null, false, "Order coffee",  null, now + (i++) * 1000)
         );
 		return args -> {
 			for (TodoItem item : items) {

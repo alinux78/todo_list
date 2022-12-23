@@ -1,5 +1,5 @@
 
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -22,6 +22,8 @@ const  API_URL = "http://localhost:8082/todos"
 })
 export class ToDoItemsService {
 
+  itemsChanged: EventEmitter<boolean> = new EventEmitter();
+
   constructor(private http: HttpClient) { }
 
   get() {
@@ -29,27 +31,21 @@ export class ToDoItemsService {
   }
 
   save(item: ToDoItem) {
-    console.log("saving item")
     if (!item.id) {
       this.http.post(API_URL, item).subscribe( data => {
-        //TODO imprive reload
-        window.location.reload();
+        this.itemsChanged.emit(true);
       });
     } else {
       this.http.put(API_URL, item).subscribe(data => {
-        //TODO imprive reload
-        window.location.reload();
+        this.itemsChanged.emit(true);
       });
     }
   }
 
   delete(item: ToDoItem) {
-    console.log("deleting item");
     const url = `${API_URL}/${item.id}`;
-    console.log(`url = ${url}`);
     this.http.delete(url).subscribe(data => {
-      //TODO imprive reload
-      window.location.reload();
+      this.itemsChanged.emit(true);
     });
   }
 }

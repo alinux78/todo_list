@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,8 +34,16 @@ public class TodoItemsController {
     }
 
     @PostMapping("/todos")
-    public ResponseEntity<TodoItem> add(@RequestBody TodoItem item) {
-        logger.info("adding new item " + item);
+    public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
+        logger.debug("adding new item " + item);
+        var newItem = todoItemsService.save(item);
+        return new ResponseEntity<>(newItem, HttpStatus.CREATED);
+    }
+    
+    @CrossOrigin
+    @PutMapping("/todos")
+    public ResponseEntity<TodoItem> update(@RequestBody TodoItem item) {
+        logger.debug("updating item " + item);
         var newItem = todoItemsService.save(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
