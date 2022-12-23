@@ -13,8 +13,8 @@
               </div>
           </div>
           <div class="col-auto px-0 mx-0 mr-2">
-              <button type="submit" (click)="addItem()" (keyup.enter)="addItem()" [disabled]="summary == null" class="btn btn-primary">Add</button>
-              <i (click)="clear()" class="fa fa-eraser my-2 px-1 text-danger btn clear-due-date-button" data-toggle="tooltip" data-placement="bottom" title="Clear"></i>
+              <button type="submit" (click)="addItem()" (keyup.enter)="addItem()" [disabled]="!this.summary" class="btn btn-primary">Add</button>
+              <i (click)="clear()" *ngIf="this.summary || this.dueDate" class="fa fa-eraser my-2 px-1 text-danger btn clear-due-date-button" data-toggle="tooltip" data-placement="bottom" title="Clear"></i>
           </div>
       </div>
   </div>

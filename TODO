@@ -1,9 +1,11 @@
 FEATURES:
 	validate REST input (spring ?)
-	confirm delete
-	REST service add/edit/delete
-	startAll script
+	ui unit tests
+	add priority
+	implement sorting
+	implement pagination
 	stopAll script
+	remove demo data 
 
 BUGS:
 	click done moves summary text

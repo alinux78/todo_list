@@ -14,6 +14,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationDialog } from './util/confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 const materialModules = [
   MatDatepickerModule,
@@ -29,12 +32,15 @@ const materialModules = [
     HeaderComponent,
     ListItemsComponent,
     TodoItemComponent,
+    ConfirmationDialog
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
+    MatButtonModule,
     ...materialModules
   ],
   providers: [

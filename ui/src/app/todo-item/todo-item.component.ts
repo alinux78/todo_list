@@ -1,6 +1,8 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
+import { ConfirmationDialog } from '../util/confirmation-dialog.component';
 
 @Component({
   selector: 'todo-item',
@@ -14,7 +16,7 @@ export class TodoItemComponent implements OnInit {
   summary: string
   dueDate: Date;
 
-  constructor(private itemsService:ToDoItemsService) { }
+  constructor(private itemsService:ToDoItemsService, private dialog: MatDialog) { }
 
   toggleDone() {
     this.item.done = !this.item.done;
@@ -50,7 +52,16 @@ export class TodoItemComponent implements OnInit {
   }
 
   deleteItem() {
-    this.itemsService.delete(this.item);
+    const dialogRef = this.dialog.open(ConfirmationDialog,{
+      data:{
+        message: 'This item will be deleted.'
+      }
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.itemsService.delete(this.item);
+      }
+    });
   }
 
   ngOnInit(): void {
