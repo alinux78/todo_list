@@ -1,11 +1,15 @@
 FEATURES:
+	demo data only if db is empty
+	report server error (ex db connection error)
+	multiple delete
+	docker compose
 	validate REST input (spring ?)
 	ui unit tests
 	add priority
 	implement sorting
 	implement pagination
 	stopAll script
-	remove demo data 
+	 
 
 BUGS:
 	click done moves summary text
