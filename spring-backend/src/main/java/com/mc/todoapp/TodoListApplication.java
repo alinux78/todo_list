@@ -35,6 +35,14 @@ public class TodoListApplication {
 	// TODO remove init data
 	@Bean
 	ApplicationRunner init(TodoItemsRepository repository) {
+		return args -> {
+			if (repository.count() == 0) {
+				addDemoData(repository);
+			}
+		};
+	}
+
+	private void addDemoData(TodoItemsRepository repository) {
 		long now = System.currentTimeMillis();
 		int i = 0;
 		var items =List.of(
@@ -44,10 +52,8 @@ public class TodoListApplication {
             new TodoItem(null, false, "Read Harry Potter",  null, now + (i++) * 1000),
             new TodoItem(null, false, "Order coffee",  null, now + (i++) * 1000)
         );
-		return args -> {
-			for (TodoItem item : items) {
-				repository.save(item);
-			}
-		};
+		for (TodoItem item : items) {
+			repository.save(item);
+		}
 	}
 }

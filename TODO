@@ -1,7 +1,6 @@
 FEATURES:
-	demo data only if db is empty
 	report server error (ex db connection error)
-	multiple delete
+	multiple delete/check
 	docker compose
 	validate REST input (spring ?)
 	ui unit tests
