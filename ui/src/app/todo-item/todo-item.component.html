@@ -7,7 +7,7 @@
         </div>
         <div class="col px-1 m-1 d-flex align-items-center">
           <input type="text" *ngIf="!isEditMode" (dblclick)="enableEdit()" class="form-control form-control-lg border-0 edit-todo-input bg-transparent rounded px-3" readonly value="{{item.summary}}" title="{{item.summary}}" />
-          <input type="text" *ngIf="isEditMode" [(ngModel)]="summary"  (keydown.enter)="saveItem();disableEdit();" (keydown.esc)="disableEdit()" class="form-control form-control-lg border-0 edit-todo-input rounded px-3" />
+          <input #editsummary type="text" [hidden]="!isEditMode" [(ngModel)]="summary"  (keydown.enter)="saveItem();disableEdit();" (keydown.esc)="disableEdit()" class="form-control form-control-lg border-0 edit-todo-input rounded px-3" />
         </div>
         <div class="col-auto m-1 p-0 px-3">
             <div class="row">

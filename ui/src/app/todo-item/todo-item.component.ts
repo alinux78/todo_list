@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
 import { ConfirmationDialog } from '../util/confirmation-dialog.component';
@@ -16,6 +16,8 @@ export class TodoItemComponent implements OnInit {
   summary: string
   dueDate: Date;
 
+  @ViewChild('editsummary') editSummary: ElementRef;
+
   constructor(private itemsService:ToDoItemsService, private dialog: MatDialog) { }
 
   toggleDone() {
@@ -29,6 +31,11 @@ export class TodoItemComponent implements OnInit {
     if (this.item.dueDate) {
       this.dueDate = new Date(this.item.dueDate);
     }
+    console.log("FOCUS");
+    setTimeout(
+      () => this.editSummary.nativeElement.focus(),
+      10
+    );
   }
 
   disableEdit() {
