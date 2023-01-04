@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
 import { ConfirmationDialog } from '../util/confirmation-dialog.component';
 
@@ -17,6 +18,8 @@ export class TodoItemComponent implements OnInit {
   dueDate: Date;
 
   @ViewChild('editsummary') editSummary: ElementRef;
+  selectedItemSub: Subscription;
+
 
   constructor(private itemsService:ToDoItemsService, private dialog: MatDialog) { }
 
@@ -31,11 +34,11 @@ export class TodoItemComponent implements OnInit {
     if (this.item.dueDate) {
       this.dueDate = new Date(this.item.dueDate);
     }
-    console.log("FOCUS");
     setTimeout(
       () => this.editSummary.nativeElement.focus(),
       10
     );
+    this.itemsService.setSelectedItem(this.item);
   }
 
   disableEdit() {
@@ -73,6 +76,15 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.summary = this.item.summary;
+    this.selectedItemSub = this.itemsService.selectedItenChanged.subscribe( itemId => {
+      if (itemId != this.item.id) {
+        this.disableEdit();
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.selectedItemSub.unsubscribe();
   }
 
 }

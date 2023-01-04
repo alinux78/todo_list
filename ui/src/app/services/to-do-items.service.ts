@@ -23,8 +23,17 @@ const  API_URL = "http://localhost:8082/todos"
 export class ToDoItemsService {
 
   itemsChanged: EventEmitter<boolean> = new EventEmitter();
+  selectedItenChanged: EventEmitter<string> = new EventEmitter();
+  selectedItem: ToDoItem;
 
   constructor(private http: HttpClient) { }
+
+
+  setSelectedItem(item?: ToDoItem) {
+    this.selectedItem = item;
+    this.selectedItenChanged.emit(this.selectedItem?.id);
+  }
+
 
   get() {
     return this.http.get<Array<ToDoItem>>(API_URL);

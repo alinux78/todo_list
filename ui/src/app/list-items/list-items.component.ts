@@ -22,6 +22,7 @@ export class ListItemsComponent implements OnInit {
 
   private refreshItems(): void {
     this.service.get().subscribe( items => this.items = items);
+    this.service.setSelectedItem(null);
   }
 
 }
