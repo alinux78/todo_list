@@ -1,13 +1,14 @@
 FEATURES:
+	externalize backend address
 	report server error (ex db connection error)
-	multiple delete/check
 	docker compose
 	validate REST input (spring ?)
 	ui unit tests
+	implement pagination
 	add priority
 	implement sorting
-	implement pagination
 	stopAll script
+	multiple delete/check
 	 
 
 BUGS:
