@@ -1,5 +1,4 @@
 FEATURES:
-	externalize backend address
 	report server error (ex db connection error)
 	docker compose
 	validate REST input (spring ?)

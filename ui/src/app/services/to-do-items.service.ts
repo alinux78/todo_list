@@ -1,6 +1,7 @@
 
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 export interface ToDoItem {
@@ -14,8 +15,7 @@ export interface ToDoItem {
 
 let items: Array<ToDoItem> = []
 
-//TODO externalize this in env var
-const  API_URL = "http://localhost:8082/todos"
+const  API_URL = `${environment.apiUrl}/todos`
 
 @Injectable({
   providedIn: 'root'
