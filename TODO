@@ -1,4 +1,5 @@
 FEATURES:
+	handle CORS before spring security: https://docs.spring.io/spring-security/reference/reactive/integrations/cors.html
 	report server error (ex db connection error)
 	docker compose
 	validate REST input (spring ?)

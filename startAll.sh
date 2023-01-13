@@ -4,7 +4,7 @@ clean_up () {
     ARG=$?
     docker stop postgresql
     docker stop pgadmin
-    kill $SPRING_PID
+    curl -X POST http://localhost:8082/actuator/shutdown
     echo "done"
     exit $ARG
 } 
@@ -16,7 +16,7 @@ docker start pgadmin
 
 cd ./spring-backend/
 ./start.sh &
-SPRING_PID=$?
+SPRING_PID=$!
 cd -
 
 
