@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
@@ -10,7 +10,7 @@ import { ConfirmationDialog } from '../util/confirmation-dialog.component';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent implements OnInit, OnDestroy {
   @Input() item: ToDoItem;
 
   isEditMode = false;
