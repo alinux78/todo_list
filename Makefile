@@ -7,4 +7,4 @@ ui-image:
 
 spring-image:
 	cd spring-backend && \
-	docker build -t todo-app-spring .
+	mvn  jib:dockerBuild

@@ -74,6 +74,37 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<from>
+						<image>openjdk:17-jdk-alpine</image>
+					</from>
+					<to>
+						<image>todo-app-spring:latest</image>
+					<!-- optional: create a tag based on the git commit id (via the git-commit-id plugin): -->
+						<!-- <tags>
+							<tag>${git.commit.id}</tag>
+						</tags> -->
+					</to>
+					<container>
+						<jvmFlags>
+							<jvmFlag>-server</jvmFlag>
+						</jvmFlags>
+					</container>
+				</configuration>
+				<!-- <executions>
+					<execution>
+						<id>build-and-push-docker-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions> -->
+			</plugin>
 		</plugins>
 	</build>
 

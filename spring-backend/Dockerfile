@@ -9,6 +9,8 @@
 
 # ENTRYPOINT ["java","-jar","/app.jar"]
 
+#This is no longer used - image is created using jib plugin
+
 FROM maven:3.8.6-eclipse-temurin-17-alpine AS buildstage
 ENV HOME=/app
 RUN mkdir -p $HOME
