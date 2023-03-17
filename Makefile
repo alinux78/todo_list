@@ -1,5 +1,5 @@
 
-all: ui-image
+all: ui-image spring-image
 
 ui-image:
 	cd ui && \
