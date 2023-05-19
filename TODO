@@ -1,5 +1,7 @@
 FEATURES:
-	bug: updating done clears due date
+	bootstrap - confirmation dialog ?
+	angular modules: home, about page, users page
+	angular routing 
 	handle CORS before spring security: https://docs.spring.io/spring-security/reference/reactive/integrations/cors.html
 	report server error (ex db connection error)
 	docker compose
@@ -13,6 +15,7 @@ FEATURES:
 	 
 
 BUGS:
+	updating done clears due date
 	click done moves summary text
 	focus on double click
 	cancel edit on focus lost
