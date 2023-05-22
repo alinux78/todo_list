@@ -22,4 +22,16 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    const aa = compiled.querySelector('div > div > div');
+    console.log('aa ', JSON.stringify(aa, null, 2));
+    expect(compiled.querySelector('body > app-root > div > app-header > div > div > div > span:nth-child(3)').textContent).toContain('Todo List');
+
+  });
+
 });
