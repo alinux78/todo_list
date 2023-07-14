@@ -25,3 +25,14 @@ docker run --name pgadmin \
      -e 'PGADMIN_DEFAULT_EMAIL=user@test.com' \
      -e 'PGADMIN_DEFAULT_PASSWORD=Test123' \
      -d dpage/pgadmin4
+
+KEYCLOAK_IMAGE=quay.io/keycloak/keycloak:22.0.0
+docker stop keycloak 
+docker rm keycloak
+docker run --name keycloak \
+	-p 9090:8080 \
+	-e KEYCLOAK_ADMIN=admin \
+	-e KEYCLOAK_ADMIN_PASSWORD=admin \
+	-d \
+	${KEYCLOAK_IMAGE} \
+	start-dev
