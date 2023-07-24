@@ -1,4 +1,6 @@
 FEATURES:
+	implement logout
+	register user (via keycloack)
 	bootstrap - confirmation dialog ?
 	angular modules: home, about page, users page
 	angular routing 
@@ -10,7 +12,6 @@ FEATURES:
 	implement pagination
 	add priority
 	implement sorting
-	stopAll script
 	multiple delete/check
 	 
 
