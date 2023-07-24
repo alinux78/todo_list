@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,8 @@
     "@angular/router": "~11.2.5",
     "bootstrap": "^5.2.2",
     "font-awesome": "^4.7.0",
+    "keycloak-angular": "~8.0.1",
+    "keycloak-js": "~16.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "uuid": "^9.0.0",

@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8082"
+  apiUrl: "http://localhost:8082",
+  keycloak: {
+    // Url of the Identity Provider
+    issuer: 'http://localhost:9090',
+    // Realm
+    realm: 'todo_app',
+    clientId: 'todo_list',
+  },
 };
 
 /*

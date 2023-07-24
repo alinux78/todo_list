@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { AppComponent } from './app.component';
 import { AddItemComponent } from './add-item/add-item.component';
@@ -17,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationDialog } from './util/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+
+import { initializer } from 'src/utils/app-inits';
 
 const materialModules = [
   MatDatepickerModule,
@@ -39,12 +43,19 @@ const materialModules = [
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    KeycloakAngularModule,
     MatDialogModule,
     MatButtonModule,
     ...materialModules
   ],
   providers: [
-    ToDoItemsService
+    ToDoItemsService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      deps: [KeycloakService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
