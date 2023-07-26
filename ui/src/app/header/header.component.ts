@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,11 @@ export class HeaderComponent implements OnInit {
 
   title : string = "Todo List"
 
-  constructor() { }
+  constructor(private keycloakService: KeycloakService) {}
 
+  logout() {
+    this.keycloakService.logout();
+  }
   ngOnInit(): void {
   }
 
