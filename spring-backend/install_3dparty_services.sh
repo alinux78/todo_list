@@ -1,5 +1,7 @@
 #!/bin/bash
 
+script_dir=$(dirname $0)
+
 docker pull postgres:15.1
 
 
@@ -32,7 +34,8 @@ docker rm keycloak
 docker run --name keycloak \
 	-p 9090:8080 \
 	-e KEYCLOAK_ADMIN=admin \
+     -v ${script_dir}/config/keycloack:/opt/keycloak/data/import \
 	-e KEYCLOAK_ADMIN_PASSWORD=admin \
 	-d \
 	${KEYCLOAK_IMAGE} \
-	start-dev --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true 
+	start-dev --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true --import-realm
