@@ -35,4 +35,4 @@ docker run --name keycloak \
 	-e KEYCLOAK_ADMIN_PASSWORD=admin \
 	-d \
 	${KEYCLOAK_IMAGE} \
-	start-dev
+	start-dev --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true 
