@@ -1,0 +1,4 @@
+
+## Spring Boot Keycloak
+https://github.com/keycloak/keycloak-quickstarts/tree/latest/spring/rest-authz-resource-server
+https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html

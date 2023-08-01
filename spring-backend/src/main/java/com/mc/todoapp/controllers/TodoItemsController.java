@@ -22,14 +22,16 @@ import com.mc.todoapp.services.TodoItemsService;
 @RestController
 public class TodoItemsController {
 
-
     Logger logger = LoggerFactory.getLogger(TodoItemsController.class);
-    
+
     @Autowired
     private TodoItemsService todoItemsService;
 
     @GetMapping("/todos")
     public List<TodoItem> getAll() {
+        // Jwt user = ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        // logger.info("user " + user.getSubject());
+
         return todoItemsService.getAll();
     }
 
@@ -39,7 +41,7 @@ public class TodoItemsController {
         var newItem = todoItemsService.save(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
-    
+
     @CrossOrigin
     @PutMapping("/todos")
     public ResponseEntity<TodoItem> update(@RequestBody TodoItem item) {
