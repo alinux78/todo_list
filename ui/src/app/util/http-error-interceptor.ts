@@ -11,11 +11,13 @@ import { Observable, throwError } from 'rxjs';
 
 import { retry, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
+  constructor(private toastr: ToastrService) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -32,8 +34,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           // server-side error
           errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
-        //TODO open error dialog
-        window.alert(errorMessage);
+        this.toastr.error('Error', errorMessage, {
+          closeButton: true,
+          disableTimeOut: true,
+          positionClass: 'toast-top-full-width',
+        });
+        //window.alert(errorMessage);
         return throwError(errorMessage);
       })
     );

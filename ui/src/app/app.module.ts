@@ -20,6 +20,12 @@ import { ConfirmationDialog } from './util/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule,
+} from 'ngx-toastr';
+
 import { initializer } from 'src/utils/app-inits';
 import { HttpErrorInterceptor } from './util/http-error-interceptor';
 
@@ -45,6 +51,9 @@ const materialModules = [
     BrowserAnimationsModule,
     HttpClientModule,
     KeycloakAngularModule,
+    ToastrModule.forRoot({
+      toastComponent: ToastNoAnimation,
+    }),
     MatDialogModule,
     MatButtonModule,
     ...materialModules,

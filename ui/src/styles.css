@@ -47,3 +47,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 date-picker-input,*:focus,*:hover{
   outline:none !important;
 }
+
+.toast-error {
+  background-color: #de3d37 !important;
+}
