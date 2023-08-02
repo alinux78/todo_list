@@ -23,4 +23,4 @@ cd -
 
 
 cd ui
-./start.sh
+./start-with-auth.sh
