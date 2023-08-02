@@ -1,7 +1,7 @@
 package com.mc.todoapp;
 
-
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.keycloak.adapters.authorization.integration.jakarta.ServletPolicyEnforcerFilter;
 import org.keycloak.adapters.authorization.spi.ConfigurationResolver;
@@ -18,8 +18,9 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-
-
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -32,9 +33,8 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests((authorize) -> authorize
-                        //.requestMatchers("/*").hasRole("ROLE_REGULAR")
-						.anyRequest().authenticated()
-				)
+						// .requestMatchers("/*").hasRole("ROLE_REGULAR")
+						.anyRequest().authenticated())
 				.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 		return http.build();
 	}
@@ -43,4 +43,5 @@ public class SecurityConfig {
 	JwtDecoder jwtDecoder() {
 		return NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
 	}
+
 }
