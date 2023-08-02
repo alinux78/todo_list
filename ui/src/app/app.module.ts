@@ -15,18 +15,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmationDialog } from './util/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 import { initializer } from 'src/utils/app-inits';
+import { HttpErrorInterceptor } from './util/http-error-interceptor';
 
 const materialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
 ];
 
 @NgModule({
@@ -36,7 +37,7 @@ const materialModules = [
     HeaderComponent,
     ListItemsComponent,
     TodoItemComponent,
-    ConfirmationDialog
+    ConfirmationDialog,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,7 @@ const materialModules = [
     KeycloakAngularModule,
     MatDialogModule,
     MatButtonModule,
-    ...materialModules
+    ...materialModules,
   ],
   providers: [
     ToDoItemsService,
@@ -56,7 +57,14 @@ const materialModules = [
       deps: [KeycloakService],
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+
+      useClass: HttpErrorInterceptor,
+
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
