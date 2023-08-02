@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ng serve --port 5050 --watch
+ng serve --proxy-config proxy.conf.json --port 5050 --watch
