@@ -29,9 +29,6 @@ public class TodoItemsController {
 
     @GetMapping("/todos")
     public List<TodoItem> getAll() {
-        // Jwt user = ((Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        // logger.info("user " + user.getSubject());
-
         return todoItemsService.getAll();
     }
 
