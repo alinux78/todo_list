@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mc.todoapp.models.TodoItem;
 import com.mc.todoapp.services.TodoItemsService;
+import com.mc.todoapp.services.TodoUsersService;
 
 @RestController
 public class TodoItemsController {
@@ -27,14 +28,18 @@ public class TodoItemsController {
     @Autowired
     private TodoItemsService todoItemsService;
 
+    @Autowired
+    private TodoUsersService usersService;
+
     @GetMapping("/todos")
     public List<TodoItem> getAll() {
-        return todoItemsService.getAll();
+        return todoItemsService.getAllByUser(usersService.getCurrentUser());
     }
 
     @PostMapping("/todos")
     public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
         logger.debug("adding new item " + item);
+        item.setUser(usersService.getCurrentUser());
         var newItem = todoItemsService.save(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }

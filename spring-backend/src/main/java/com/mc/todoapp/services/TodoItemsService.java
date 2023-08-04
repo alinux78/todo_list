@@ -17,15 +17,10 @@ public class TodoItemsService {
     Logger logger = LoggerFactory.getLogger(TodoItemsService.class);
     @Autowired
     private TodoItemsRepository todoItemsRepository;
-    @Autowired
-    private TodoUsersService usersService;
 
-    public List<TodoItem> getAll() {
-        TodoUser user = usersService.getUser();
-        logger.info("user" + user);
-
+    public List<TodoItem> getAllByUser(TodoUser user) {
         //TODO - sorting column and direction as parameters
-        return todoItemsRepository.findAll(Sort.by(Sort.Direction.ASC, "createdAt"));
+        return todoItemsRepository.findAllByUser(user, Sort.by(Sort.Direction.ASC, "createdAt"));
     }
 
     public TodoItem save(TodoItem item) {

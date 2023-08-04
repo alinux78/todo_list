@@ -13,7 +13,7 @@ public class TodoUsersService {
     @Autowired
     private TodoUsersRepository usersRepository;
 
-    public TodoUser getUser() {
+    public TodoUser getCurrentUser() {
         Jwt jwt = ((Jwt)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         String externalId = jwt.getSubject();
 
