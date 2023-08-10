@@ -47,6 +47,7 @@ public class TodoItemsController {
     public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
         logger.debug("adding new item " + item);
         item.setUser(usersService.getCurrentUser());
+        item.setCreatedAt(System.currentTimeMillis());
         var newItem = todoItemsService.save(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }

@@ -19,34 +19,49 @@ let items: Array<ToDoItem> = []
 const  API_URL = `/api/todos`
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToDoItemsService {
-
   itemsChanged: EventEmitter<boolean> = new EventEmitter();
   selectedItenChanged: EventEmitter<string> = new EventEmitter();
   selectedItem: ToDoItem;
+  pageSize = 5;
+  currentPage = 0;
 
-  constructor(private http: HttpClient, private keycloakService: KeycloakService) { }
-
+  constructor(
+    private http: HttpClient,
+  ) {}
 
   setSelectedItem(item?: ToDoItem) {
     this.selectedItem = item;
     this.selectedItenChanged.emit(this.selectedItem?.id);
   }
 
-
   get() {
-    return this.http.get<Array<ToDoItem>>(API_URL, this.options());
+    const url = `${API_URL}?page=${this.currentPage}&size=${this.pageSize}`;
+    return this.http.get<Array<ToDoItem>>(url);
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.itemsChanged.emit(true);
+  }
+
+  prevPage() {
+    if (this.currentPage == 0 ) {
+      return;
+    }
+    this.currentPage--;
+    this.itemsChanged.emit(true);
   }
 
   save(item: ToDoItem) {
     if (!item.id) {
-      this.http.post(API_URL, item, this.options()).subscribe( data => {
+      this.http.post(API_URL, item).subscribe((data) => {
         this.itemsChanged.emit(true);
       });
     } else {
-      this.http.put(API_URL, item).subscribe(data => {
+      this.http.put(API_URL, item).subscribe((data) => {
         this.itemsChanged.emit(true);
       });
     }
@@ -54,14 +69,8 @@ export class ToDoItemsService {
 
   delete(item: ToDoItem) {
     const url = `${API_URL}/${item.id}`;
-    this.http.delete(url, this.options()).subscribe(data => {
+    this.http.delete(url).subscribe((data) => {
       this.itemsChanged.emit(true);
     });
-  }
-
-  private options() {
-    const headers = new HttpHeaders();
-    //this.keycloakService.addTokenToHeader(headers);
-    return {headers: headers};
   }
 }

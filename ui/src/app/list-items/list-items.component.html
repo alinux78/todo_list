@@ -21,10 +21,22 @@
           <i class="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip" data-placement="bottom" title="Descending"></i>
       </div>
   </div>
+  <ng-template [ngTemplateOutlet]="paging"></ng-template>
   <!-- Todo list section -->
   <div class="row mx-1 px-5 pb-3 w-80">
     <div *ngFor="let item of items">
       <todo-item [item] = "item"></todo-item>
     </div>
   </div>
+  <ng-template [ngTemplateOutlet]="paging"></ng-template>
 </div>
+
+<ng-template #paging>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-link text-decoration-none" (click)="prevPage()"
+      [disabled]="!hasPrevPage()">Prev</button>
+    <button class="pull-right btn btn-link text-decoration-none" (click)="nextPage()"
+      [disabled]="!hasNextPage()">Next</button>
+  </div>
+</ng-template>
+

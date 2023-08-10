@@ -7,7 +7,7 @@ FEATURES:
 	docker compose
 	validate REST input (spring ?)
 	ui unit tests
-	implement pagination
+	improve  pagination: show items count, current page, etc
 	add priority
 	implement sorting
 	multiple delete/check
