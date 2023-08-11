@@ -23,6 +23,10 @@ public class TodoItemsService {
     @Autowired
     private TodoItemsPagingRepository todoItemsPagingRepository;
 
+    public long getCountByUser(TodoUser user) {
+        return todoItemsRepository.countByUser(user);
+    }
+
 
     public List<TodoItem> getAllByUser(TodoUser user, Pageable pageable) {
         return todoItemsPagingRepository.findAllByUser(user, pageable);

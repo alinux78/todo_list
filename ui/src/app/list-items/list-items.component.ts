@@ -8,6 +8,7 @@ import { ToDoItem, ToDoItemsService } from '../services/to-do-items.service';
 })
 export class ListItemsComponent implements OnInit {
   items: Array<ToDoItem>;
+  count: number;
 
   constructor(private service: ToDoItemsService) {
     this.service.itemsChanged.subscribe((value) => {
@@ -23,6 +24,16 @@ export class ListItemsComponent implements OnInit {
     this.service.nextPage();
   }
 
+  getPageStartIndex() {
+    return this.service.currentPage * this.service.pageSize + 1;
+  }
+
+  getPageEndIndex() {
+    const idx =
+      this.service.currentPage * this.service.pageSize + this.service.pageSize;
+    return Math.min(idx, this.count);
+  }
+
   prevPage() {
     this.service.prevPage();
   }
@@ -36,6 +47,7 @@ export class ListItemsComponent implements OnInit {
   }
 
   private refreshItems(): void {
+    this.service.getCount().subscribe((c) => (this.count = c.count));
     this.service.get().subscribe((items) => (this.items = items));
     this.service.setSelectedItem(null);
   }

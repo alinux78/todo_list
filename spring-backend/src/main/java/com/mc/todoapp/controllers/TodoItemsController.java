@@ -1,6 +1,7 @@
 package com.mc.todoapp.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,11 @@ public class TodoItemsController {
         Sort sort = Sort.by(Sort.Direction.ASC, "createdAt");
         Pageable paging = PageRequest.of(page, size, sort);
         return todoItemsService.getAllByUser(usersService.getCurrentUser(), paging);
+    }
+    @GetMapping("/todos/count")
+    public Map<String, Object> getCount() {
+        long count = todoItemsService.getCountByUser(usersService.getCurrentUser());
+        return Map.of("count", count);
     }
 
     @PostMapping("/todos")

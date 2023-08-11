@@ -28,9 +28,7 @@ export class ToDoItemsService {
   pageSize = 5;
   currentPage = 0;
 
-  constructor(
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
   setSelectedItem(item?: ToDoItem) {
     this.selectedItem = item;
@@ -42,13 +40,18 @@ export class ToDoItemsService {
     return this.http.get<Array<ToDoItem>>(url);
   }
 
+  getCount() {
+    const url = `${API_URL}/count`;
+    return this.http.get<{count:number}>(url);
+  }
+
   nextPage() {
     this.currentPage++;
     this.itemsChanged.emit(true);
   }
 
   prevPage() {
-    if (this.currentPage == 0 ) {
+    if (this.currentPage == 0) {
       return;
     }
     this.currentPage--;

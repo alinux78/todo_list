@@ -13,4 +13,5 @@ import com.mc.todoapp.models.TodoUser;
 @Repository
 public interface TodoItemsRepository extends JpaRepository<TodoItem, String> {
     List<TodoItem> findAllByUser(TodoUser user, Sort sort);
+    long countByUser(TodoUser user);
 }
