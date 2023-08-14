@@ -35,7 +35,7 @@
   <div class="d-flex justify-content-end">
     <button class="btn btn-link text-decoration-none" (click)="prevPage()"
     [disabled]="!hasPrevPage()">Prev</button>
-    <div class="text-secondary my-2 pr-2 view-opt-label">{{getPageStartIndex()}}-{{getPageEndIndex()}} of {{count}} todos</div>
+    <div class="text-secondary my-2 pr-2 view-opt-label">Items {{getPageStartIndex() | number}} - {{getPageEndIndex() | number}} out of {{count}} todos</div>
     <button class="pull-right btn btn-link text-decoration-none" (click)="nextPage()"
       [disabled]="!hasNextPage()">Next</button>
   </div>

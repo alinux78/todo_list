@@ -39,7 +39,11 @@ export class ListItemsComponent implements OnInit {
   }
 
   hasNextPage() {
-    return this.items.length == this.service.pageSize;
+    return (
+      ((this.service.currentPage + 1) * this.service.pageSize != this.count)
+      &&
+      (this.items.length == this.service.pageSize)
+    );
   }
 
   hasPrevPage() {
@@ -48,7 +52,12 @@ export class ListItemsComponent implements OnInit {
 
   private refreshItems(): void {
     this.service.getCount().subscribe((c) => (this.count = c.count));
-    this.service.get().subscribe((items) => (this.items = items));
+    this.service.get().subscribe((items) => {
+      this.items = items;
+      if (this.items.length == 0 && this.hasPrevPage()) {
+        this.prevPage();
+      }
+  });
     this.service.setSelectedItem(null);
   }
 }

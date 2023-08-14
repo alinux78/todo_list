@@ -1,4 +1,5 @@
 FEATURES:
+	import/export
 	backend create user API + Keycloak user federation
 	remove logout confirmation
 	bootstrap - confirmation dialog ?
@@ -13,6 +14,8 @@ FEATURES:
 	multiple delete/check
 	helm chart
 	publish in GKE
+	nodejs backend
+	golang backend
 	 
 
 BUGS:
