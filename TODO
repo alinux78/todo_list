@@ -1,5 +1,8 @@
 FEATURES:
-	import/export
+	import/export -> routing
+	use java record
+	use sealed classes
+	java code coverage- > fail build
 	backend create user API + Keycloak user federation
 	remove logout confirmation
 	bootstrap - confirmation dialog ?
