@@ -1,5 +1,6 @@
 FEATURES:
 	import/export -> routing
+	transactions
 	use java record
 	use sealed classes
 	java code coverage- > fail build
